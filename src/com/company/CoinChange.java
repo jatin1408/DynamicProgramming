@@ -21,8 +21,8 @@ public class CoinChange {
     }
 
     public static void main(String[] args) {
-        int[] arr={1,2,3};
-        int sum=4;
+        int[] arr={1,2,5};
+        int sum=5;
         getCoins(arr,sum);
     }
 }
