@@ -23,6 +23,7 @@ public class PrintLCS {
       int i=m;
       int j=n;
       StringBuilder res=new StringBuilder();
+
       while (i>0 && j>0){
           if(a.charAt(i-1)==b.charAt(j-1)){
               res.append(a.charAt(i-1));
@@ -31,20 +32,20 @@ public class PrintLCS {
 
           }
           else {
-              if(t[i][j-1]>t[i-1][j]){
+              if(t[i][j-1]>t[i-1][j])
                   j--;
-              }
-              else {
+
+              else
                   i--;
-              }
+
           }
 
       }
       return res.reverse().toString();
     }
     public static void main(String[] args) {
-        String s1 = "acbcf";
-        String s2 = "abcdaf";
+        String s1 = "abac";
+        String s2 = "cab";
         System.out.println(getLongest(s1,s2));
     }
 }
