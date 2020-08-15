@@ -2,7 +2,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
-class Solution {
+class WordBreak{
     public boolean wordBreak(String s, List<String> wordDict) {
         HashSet<String> hashset=new HashSet<>();
         for(String obj:wordDict){
