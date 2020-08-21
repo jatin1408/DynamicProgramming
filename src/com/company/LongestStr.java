@@ -1,6 +1,14 @@
 package com.company;
 
 public class LongestStr {
+    public static int recursive(char[] x,char[] y,int m,int n,int res){
+        if(m==0 || n==0)
+            return res;
+
+        if(x[m-1]==y[n-1])
+            res= recursive(x,y,m-1,n-1,res+1);
+        return Math.max(res,Math.max(recursive(x,y,m-1,n,0),recursive(x,y,m,n-1,0)));
+    }
     public static int longest(String a,String b){
         int m=a.length();
         int n=b.length();
@@ -32,6 +40,7 @@ public class LongestStr {
     public static void main(String[] args) {
         String a="abcde";
         String b="abfce";
-        System.out.println(longest(a,b));
+        //System.out.println(longest(a,b));
+        System.out.println(recursive(a.toCharArray(),b.toCharArray(),a.length(),b.length(),0));
     }
 }
