@@ -30,8 +30,8 @@ public class LCSDP {
 
     public static void main(String[] args) {
         LCSDP lcsdp=new LCSDP();
-        String s1 = "ACBDZ";
-        String s2 = "ABC";
+        String s1 = "ABAC";
+        String s2 = "CAB";
         System.out.println(lcsdp.getLongest(s1,s2));
     }
 }
