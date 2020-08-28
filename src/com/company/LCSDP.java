@@ -1,7 +1,7 @@
 package com.company;
 
 public class LCSDP {
-    static int getLongest(String a,String b){
+    public  int getLongest(String a,String b){
         int m=a.length();
         int n=b.length();
 
@@ -29,8 +29,9 @@ public class LCSDP {
     }
 
     public static void main(String[] args) {
+        LCSDP lcsdp=new LCSDP();
         String s1 = "ACBDZ";
         String s2 = "ABC";
-        System.out.println(getLongest(s1,s2));
+        System.out.println(lcsdp.getLongest(s1,s2));
     }
 }
