@@ -28,6 +28,7 @@ class Solution {
         return n;
 
     }
+
     public int search(int[] inorder,int start,int end,int target){
         int i;
         for(i=start;i<=end;i++){
