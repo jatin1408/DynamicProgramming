@@ -37,8 +37,8 @@ public class LargestBST {
         public MinMax() {
             isBST=true;
             size=0;
-            max=Integer.MAX_VALUE;
-            min=Integer.MIN_VALUE;
+            max=Integer.MIN_VALUE;
+            min=Integer.MAX_VALUE;
         }
     }
 }
