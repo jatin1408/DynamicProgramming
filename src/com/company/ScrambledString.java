@@ -25,7 +25,9 @@ public class ScrambledString {
             else if(scrambledStrings(a.substring(0,i),b.substring(0,i)) && scrambledStrings(a.substring(i,n),b.substring(i,n))){
                 flag=true;
             }
-
+            if(flag==true){
+                break;
+            }
         }
         hashMap.put(temp,flag);
         return flag;
