@@ -1,9 +1,9 @@
-package com.company;
+package com.company.SlidingWindow;
 
 import java.util.HashMap;
 
 //problem link - https://www.geeksforgeeks.org/count-distinct-elements-in-every-window-of-size-k/
-public class SlidingWindow{
+public class DistinctElements{
     HashMap<Integer,Integer> hash=new HashMap<>();
     public void getUnique(int k,int[] arr){
         for(int i=0;i<k;i++){
@@ -33,7 +33,7 @@ public class SlidingWindow{
     }
 
     public static void main(String[] args) {
-        SlidingWindow window=new SlidingWindow();
+     DistinctElements window=new DistinctElements();
         int[] arr={1, 2, 1, 3, 4, 2, 3};
         int k=4;
         window.getUnique(k,arr);
