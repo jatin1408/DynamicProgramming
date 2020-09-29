@@ -30,6 +30,7 @@ public class Trie {
         current.endOfWord=true;
     }
     public boolean search(String word){
+
         Node current=root;
         for(int i=0;i<word.length();i++){
             char ch=word.charAt(i);
@@ -60,5 +61,14 @@ public class Trie {
 
         }
         return false;
+    }
+
+
+    public static void main(String[] args) {
+        Trie t=new Trie();
+       t.insert("geeksforgeeks");
+       t.insert("geeks");
+       t.insert("geek");
+
     }
 }
