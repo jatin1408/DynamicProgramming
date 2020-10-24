@@ -22,6 +22,7 @@ public class LargestAreaInHistogram {
                    area=arr[top]*(i-stack.peek()-1);
 
                }
+               
                maxArea=Math.max(maxArea,area);
            }
        }
