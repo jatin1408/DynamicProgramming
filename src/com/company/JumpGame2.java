@@ -21,4 +21,22 @@ public class JumpGame2 {
         }
         return jumps;
     }
+    //Another DP Solution
+    public int maxJumps(int[] nums){
+        int n=nums.length;
+        if(n==1 || nums[0]==0){
+            return 0;
+        }
+        int[] dp=new int[n];
+        for(int i=1;i<n;i++){
+            dp[i]=Integer.MAX_VALUE;
+            for(int j=0;j<i;j++){
+                if(i<=j+nums[j] && dp[j]!=Integer.MAX_VALUE){
+                    dp[i]=Math.min(dp[i],dp[j]+1);
+                    break;
+                }
+            }
+        }
+        return dp[n-1];
+    }
 }
