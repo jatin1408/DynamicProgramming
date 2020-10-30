@@ -18,6 +18,7 @@ public class DecodeWays {
                 arr[i]+=arr[i-2];
             }
         }
+        
         return arr[n];
     }
 
