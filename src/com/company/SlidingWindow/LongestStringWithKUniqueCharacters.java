@@ -35,4 +35,8 @@ public class LongestStringWithKUniqueCharacters {
         }
         System.out.println(res);
     }
+
+    public static void main(String[] args) {
+        longestString("abcbbbbcccbdddadacb",2);
+    }
 }
