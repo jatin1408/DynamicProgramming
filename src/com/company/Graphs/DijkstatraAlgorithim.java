@@ -11,7 +11,7 @@ public class DijkstatraAlgorithim {
         parent=new int[v];
         value=new int[v];
         visited=new boolean[v];
-this.source=source;
+        this.source=source;
         for(int i=0;i<V;i++){
             parent[i]=-1;
             value[i]=Integer.MAX_VALUE;
