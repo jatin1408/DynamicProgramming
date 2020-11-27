@@ -22,7 +22,7 @@ public class SubsetSumProblem {
 
     public static void main(String[] args) {
         SubsetSumProblem s=new SubsetSumProblem();
-        int[] arr={3,4,5,2};
-        System.out.println(s.subsetSum(arr,arr.length,6));
+        int[] arr={1,2,3};
+        System.out.println(s.subsetSum(arr,arr.length,4));
     }
 }
