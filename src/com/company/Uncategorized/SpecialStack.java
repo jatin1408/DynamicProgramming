@@ -1,65 +1,89 @@
 package com.company.Uncategorized;
 
+import java.util.*;
 public class SpecialStack {
-    int MAX=300;
-    int[] arr=new int[MAX];
-    int size=0;
-    int index=0;
-    int MAX_VALUE;
-    public boolean push(int val){
-        if(size>=MAX)
-            return false;
-        if(size==0) {
-            MAX_VALUE = val;
-            arr[index++] = val;
-            size++;
-            return true;
+
+    /** initialize your data structure here. */
+    Stack<Integer> stack;
+    int MIN;
+    public SpecialStack() {
+        stack= new Stack<>();
+    }
+
+    public void push(int x) {
+        if(stack.isEmpty()){
+            MIN=x;
+            stack.push(x);
         }
-        if(val>MAX_VALUE) {
-
-            int store=2*val-MAX_VALUE;
-            MAX_VALUE=val;
-            arr[index++]=store;
+        else if(MIN>x){
+            int store=2*x-MIN;
+            stack.push(store);
+            MIN=x;
         }
-        else
-            arr[index++] = val;
-        size++;
-        return true;
-    }
-    public int pop(){
-        if(size<0)
-            return -1;
-
-        int t=arr[--index];
-        if(t>MAX_VALUE){
-            int res=MAX_VALUE;
-            MAX_VALUE=2*MAX_VALUE-t;
-            size--;
-            return res;
+        else{
+            stack.push(x);
         }
-        size--;
-        return t;
-
-    }
-    public int getMax(){
-        return MAX_VALUE;
     }
 
-    public static void main(String[] args) {
-        SpecialStack s=new SpecialStack();
-        System.out.println(s.push(3));
-        System.out.println(s.push(5));
+    public void pop() {
+        int t=stack.peek();
+        if(t<MIN){
+            int res=MIN;
+            MIN=2*MIN-t;
+            stack.pop();
 
-        System.out.println(s.getMax());
-
-        System.out.println(s.push(7));
-        System.out.println(s.push(19));
-        System.out.println(s.getMax());
-        System.out.println(s.pop());
-        System.out.println(s.getMax());
-        System.out.println(s.pop());
-
-
+        }
+        else{
+            stack.pop();
+        }
     }
 
+    public int top() {
+        int t=stack.peek();
+        if(t<MIN){
+            int res=MIN;
+            int MIN=2*res-t;
+            return  res;
+        }
+        else{
+            return  t;
+        }
+    }
+
+    public int getMin() {
+        return  MIN;
+    }
 }
+//TWO STACK SOLUTION
+class MinStack {
+    Stack<Integer> min = new Stack<>();
+    Stack<Integer> stack = new Stack<>();
+    public void push(int x) {
+        stack.push(x);
+        if (min.isEmpty() || min.peek() >= x) {
+            min.push(x);
+        }
+    }
+
+    public void pop() {
+        if (stack.pop().equals(min.peek())) {
+            min.pop();
+        }
+    }
+
+    public int top() {
+        return stack.peek();
+    }
+
+    public int getMin() {
+        return min.peek();
+    }
+}
+/**
+ * Your MinStack object will be instantiated and called as such:
+ * MinStack obj = new MinStack();
+ * obj.push(x);
+ * obj.pop();
+ * int param_3 = obj.top();
+ * int param_4 = obj.getMin();
+ */
