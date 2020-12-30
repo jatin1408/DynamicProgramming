@@ -11,6 +11,7 @@ public class SubTreeOfOther {
         }
     }
     class Solution {
+
         public boolean isSubtree(TreeNode s, TreeNode t) {
             return traverse(s,t);
         }
