@@ -56,7 +56,7 @@ public class LetterCombinations {
 
     public static void main(String[] args) {
         LetterCombinations l=new LetterCombinations();
-        for(String obj:l.letterCombinations("8764")){
+        for(String obj:l.letterCombinations("342")){
             System.out.println(obj);
         }
     }

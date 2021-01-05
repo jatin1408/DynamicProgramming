@@ -31,16 +31,33 @@ public class RowWithMax1 {
         }
         return ans;
     }
+    int findMaxAnother(int[][] arr){
+        int rows=arr.length;
+        int cols=arr[0].length;
+        int m=0;
+        while (m<cols){
+            int n=0;
+            while (n<rows){
+                if(arr[n][m]==1){
+                    return n;
+                }
+                n++;
+            }
+            m++;
+        }
+        return -1;
+    }
 
     public static void main(String[] args) {
-        int[][] arr = {{0, 1, 1, 1},
-                {0, 0, 1, 1},
-                {1, 1, 1, 1},
-                {0, 0, 0, 0}};
+        int[][] arr = {{0, 0, 1, 1},
+                {0, 0, 0, 1},
+                {0, 0, 0, 0},
+                {0, 1, 1, 1}};
 
 
         RowWithMax1 row = new RowWithMax1();
         System.out.println(row.findMax(arr));
+        System.out.println(row.findMaxAnother(arr));
     }
 }
 

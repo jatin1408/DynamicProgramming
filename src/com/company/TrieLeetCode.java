@@ -92,9 +92,10 @@ public class TrieLeetCode {
 
     public static void main(String[] args) {
         TrieLeetCode t = new TrieLeetCode();
-        t.insert("bad");
-        t.insert("mad");
-        t.search(".ad");
+        t.insert("a");
+        t.insert("aa");
+        t.insert("aaa");
+        System.out.println(t.searchPrefix("a").isEnd);
 
     }
 }

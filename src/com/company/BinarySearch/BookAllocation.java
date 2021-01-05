@@ -8,7 +8,9 @@ public class BookAllocation {
         int res=Integer.MAX_VALUE;
         while (start<=end){
             int m=start+(end-start)/2;
+            System.out.println(m);
             if(isValid(arr,k,m,n)){
+                System.out.println(m);
                 res=Math.min(res,m);
                 end=m-1;
             }
@@ -42,9 +44,9 @@ public class BookAllocation {
     }
 
     public static void main(String[] args) {
-        int[] arr={1,2,3,4,5,6,7,8,9,10};
+        int[] arr={12,34,67,90};
         BookAllocation b=new BookAllocation();
-        int k=5;
+        int k=2;
         System.out.println(b.minBookAllocation(arr,k));
     }
 }
