@@ -15,11 +15,9 @@ public class PartitionArray {
             return t[start][sum];
         }
 
-
-            boolean found=
-                    canBePartitioned(arr,start+1,sum+arr[start],targetSum,n,t)
+        boolean found= canBePartitioned(arr,start+1,sum+arr[start],targetSum,n,t)
                                                 ||
-                            canBePartitioned(arr,start+1,sum,targetSum,n,t);
+                canBePartitioned(arr,start+1,sum,targetSum,n,t);
 
 
 
