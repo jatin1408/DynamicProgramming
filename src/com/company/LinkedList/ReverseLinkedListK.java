@@ -54,9 +54,9 @@ public class ReverseLinkedListK {
         r.addToList(3);
         r.addToList(4);
         r.addToList(5);
-        r.addToList(6);
+        /*r.addToList(6);
         r.addToList(7);
-        r.addToList(8);
+        r.addToList(8);*/
         r.printList(r.head);
         ListNode newR=r.reverseLL(r.head,3);
         r.printList(newR);
