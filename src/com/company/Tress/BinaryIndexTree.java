@@ -1,40 +1,31 @@
 package com.company.Tress;
 
 public class BinaryIndexTree {
-
-    public int getSum(int[] arr,int index){
-        int sum=0;
-        index=index+1;
-        while (index>0){
-            sum+=arr[index];
-            index=getParent(index);
-        }
-        return sum;
+    int max;
+    int[] bit;
+    public BinaryIndexTree(int max,int[] nums) {
+        this.max = max;
+        bit=new int[this.max+1];
+        for(int i=1;i<=max;i++) update(i,nums[i-1]);
     }
-    public int getParent(int index){
-        return index & index-1;
+    void update(int i,int x){
+        for(;i<=max;i+=(i&-i))
+            bit[i]+=x;
     }
-    public void updateValues(int[] arr,int val,int index){
-        while (index<arr.length){
-            arr[index]+=val;
-            index=getNext(index);
-        }
-    }
-    public int getNext(int index) {
-        return index+(index&-index);
-    }
-    public int[] construct(int[] input){
-        int[] arr=new int[input.length+1];
-        for(int i=1;i<=input.length;i++){
-            updateValues(arr,input[i-1],i);
-        }
-        return arr;
+    int sum(int i){
+        int ans=0;
+        for(;i>0;i-=(i&-i))
+            ans+=bit[i];
+        return ans;
     }
 
     public static void main(String[] args) {
-        BinaryIndexTree b=new BinaryIndexTree();
-        int[] arr=b.construct(new int[]{1, 2, 3, 6,8});
-        System.out.println(b.getSum(arr,4));
-        System.out.println(b.getSum(arr,1));
+        int[] nums={1,3,5};
+        BinaryIndexTree bit=new BinaryIndexTree(3,nums);
+        System.out.println(bit.sum(3));
+        bit.update(2,2-nums[1]);
+        System.out.println(bit.sum(3));
     }
+
 }
+
