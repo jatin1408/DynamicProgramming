@@ -1,5 +1,12 @@
 package com.company;
 
+import java.util.Arrays;
+import java.util.Comparator;
+ class CompareByLength implements Comparator<String> {
+    public int compare(String a,String b){
+        return b.length()-a.length();
+    };
+}
 public class TrieLeetCode {
     TrieNode root;
 
@@ -70,9 +77,6 @@ public class TrieLeetCode {
         TrieNode node = root;
         for (int i = 0; i < word.length(); i++) {
             char ch = word.charAt(i);
-            if (ch == '.') {
-                continue;
-            }
             if (!node.containsKey(ch)) {
                 return null;
             }
@@ -92,10 +96,26 @@ public class TrieLeetCode {
 
     public static void main(String[] args) {
         TrieLeetCode t = new TrieLeetCode();
-        t.insert("a");
+    /*    t.insert("a");
         t.insert("aa");
         t.insert("aaa");
-        System.out.println(t.searchPrefix("a").isEnd);
+        System.out.println(t.searchPrefix("a").isEnd);*/
+        String[] words={"time", "me", "bell"};
+        int ans=0;
+        Arrays.sort(words,new CompareByLength());
+        for(int i=0;i<words.length;i++) {
+            words[i] = new StringBuilder(words[i]).reverse().toString();
+            TrieNode node=t.searchPrefix(words[i]);
+            if(node!=null) continue;
+            else
+                ans+=words[i].length()+1;
+
+            t.insert(words[i]);
+        }
+        System.out.println(ans);
+
+
+
 
     }
 }
