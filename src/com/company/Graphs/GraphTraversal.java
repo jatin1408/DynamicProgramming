@@ -1,9 +1,11 @@
 package com.company.Graphs;
 import java.util.*;
+
 public class GraphTraversal {
     private int V;
     private LinkedList<Integer> adj[];
     boolean[] visited;
+
     public GraphTraversal(int v) {
         V = v;
         adj=new LinkedList[v];

@@ -1,15 +1,18 @@
 package com.company;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
- class CompareByLength implements Comparator<String> {
+import java.util.List;
+
+class CompareByLength implements Comparator<String> {
     public int compare(String a,String b){
         return b.length()-a.length();
     };
 }
 public class TrieLeetCode {
     TrieNode root;
-
+    List<String> allWords=new ArrayList<>();
     /**
      * Initialize your data structure here.
      */
@@ -92,7 +95,11 @@ public class TrieLeetCode {
         TrieNode node = searchPrefix(prefix);
         return node != null;
     }
+    public void getAllWords(TrieNode node,String word){
+        if(node==null) return;
 
+
+    }
 
     public static void main(String[] args) {
         TrieLeetCode t = new TrieLeetCode();
@@ -100,19 +107,23 @@ public class TrieLeetCode {
         t.insert("aa");
         t.insert("aaa");
         System.out.println(t.searchPrefix("a").isEnd);*/
-        String[] words={"time", "me", "bell"};
-        int ans=0;
-        Arrays.sort(words,new CompareByLength());
-        for(int i=0;i<words.length;i++) {
-            words[i] = new StringBuilder(words[i]).reverse().toString();
-            TrieNode node=t.searchPrefix(words[i]);
-            if(node!=null) continue;
-            else
-                ans+=words[i].length()+1;
+        String[] words={"cat", "ball","bat","rat", "cap","be","balle"};
+        for(String word:words) t.insert(word);
+        TrieNode node= t.searchPrefix("ba");
 
-            t.insert(words[i]);
-        }
-        System.out.println(ans);
+
+//        int ans=0;
+//        Arrays.sort(words,new CompareByLength());
+//        for(int i=0;i<words.length;i++) {
+//            words[i] = new StringBuilder(words[i]).reverse().toString();
+//            TrieNode node=t.searchPrefix(words[i]);
+//            if(node!=null) continue;
+//            else
+//                ans+=words[i].length()+1;
+//
+//            t.insert(words[i]);
+//        }
+//        System.out.println(ans);
 
 
 
