@@ -1,98 +1,71 @@
-package com.company.Graphs;
-
-
 import java.util.*;
+class TestClass {
+    public static void main(String args[] ) throws Exception {
+        /* Sample code to perform I/O:
+         * Use either of these methods for input
 
-public class DijkstatraMinHeap {
-    private int dist[];
-    private Set<Integer> settled;
-    private int V;
-    private PriorityQueue<Node> pq;
-    List<List<Node>> adj;
+        //BufferedReader
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String name = br.readLine();                // Reading input from STDIN
+        System.out.println("Hi, " + name + ".");    // Writing output to STDOUT
 
-    public DijkstatraMinHeap(int v) {
-        V = v;
-        settled = new HashSet<>();
-        pq = new PriorityQueue<>(V,new Node());
-        dist = new int[V];
+        //Scanner
+        Scanner s = new Scanner(System.in);
+        String name = s.nextLine();                 // Reading input from STDIN
+        System.out.println("Hi, " + name + ".");    // Writing output to STDOUT
 
-    }
+        */
 
-    public void shortest(int source) {
+        // Write your code here
 
-        for (int i = 0; i < V; i++) {
-            dist[i] = Integer.MAX_VALUE;
+        Scanner sc=new Scanner(System.in);
+        int members=Integer.parseInt(sc.nextLine());
+        Map<Integer,Map<Integer,Integer>> map=new HashMap<>();
+        for(int i=0;i<members;i++) map.put(Integer.parseInt(sc.nextLine()),new HashMap<>());
+
+        int edges=Integer.parseInt(sc.nextLine());
+        for(int i=0;i<edges;i++){
+            String in=sc.nextLine();
+            String[] splitted=in.split(" ");
+            int u=Integer.parseInt(splitted[0]);
+            int v=Integer.parseInt(splitted[1]);
+            int t=Integer.parseInt(splitted[2]);
+            Map<Integer,Integer> ls=map.get(u);
+            ls.put(v,t);
+            map.put(u,ls);
         }
-        dist[source] = 0;
-        pq.add(new Node(source, 0));
-        while (settled.size() != V && pq.size()!=0) {
-            int u = pq.remove().v;
-            settled.add(u);
-            neighbours(u);
-        }
-    }
+        int source=Integer.parseInt(sc.nextLine());
+        int dest=Integer.parseInt(sc.nextLine());
+        Queue<int[]> pq=new PriorityQueue<>((a,b)-> a[0]-b[0]);
+        Map<Integer,Integer> dist=new HashMap<>();
 
-    public void neighbours(int u) {
-        int edgeDistance = -1;
-        int newDistance = -1;
-        for (int i = 0; i < adj.get(u).size(); i++) {
-            Node node = adj.get(u).get(i);
-            if (!settled.contains(node.v)) {
-                edgeDistance = node.cost;
-                newDistance = dist[u] + edgeDistance;
-                if (newDistance < dist[node.v]) {
-                    dist[node.v] = newDistance;
+        for(Integer key:map.keySet()) dist.put(key,Integer.MAX_VALUE);
+        dist.put(source,0);
+        pq.offer(new int[]{0,source});
+        Set<Integer> visited=new HashSet<>();
+
+        while(!pq.isEmpty()){
+            int[] peek=pq.remove();
+            int curr=peek[1];
+            if (visited.contains(curr)) continue;
+            visited.add(curr);
+            Map<Integer,Integer> childs=map.get(curr);
+            for(Integer key: map.keySet()){
+                int new_curr=key;
+                int distance=childs.get(key);
+                if(!visited.contains(new_curr)){
+                    if(dist.containsKey(new_curr) && dist.get(new_curr) < dist.get(curr) + distance)
+                        continue;
+
+                    dist.put(new_curr,dist.get(curr) + distance);
+                    pq.add(new int[]{new_curr,dist.get(new_curr)});
                 }
-                pq.add(new Node(node.v, dist[node.v]));
             }
         }
+
+        System.out.println(dist.get(dest));
+
     }
 
-    public void create(int[][] graph) {
-        adj = new ArrayList<List<Node>>();
-        for (int i = 0; i < V; i++) {
-            List<Node> item = new ArrayList<Node>();
-            adj.add(item);
-        }
-        for (int i = 0; i < graph.length; i++) {
-            addEdge(graph[i][0], graph[i][1], graph[i][2]);
-        }
-    }
-
-    public void addEdge(int u, int v, int cost) {
-        adj.get(u).add(new Node(v, cost));
-    }
-    public static void main(String[] args) {
-        int[][] times = {{2,1,1},{2,3,1},{3,4,1}};
-        int n=5;
-        int source=2;
-        DijkstatraMinHeap d=new DijkstatraMinHeap(n);
-        d.create(times);
-        d.shortest(source);
-        for(int i=0;i<n;i++){
-            System.out.println(d.dist[i]);
-        }
-    }
 
 }
-class Node implements Comparator<Node> {
-    int v;
-    int cost;
-    public Node(){
-
-    }
-    public Node(int v, int cost) {
-        this.v = v;
-        this.cost = cost;
-    }
-
-    @Override
-    public int compare(Node o1, Node o2) {
-        return o1.cost-o2.cost;
-    }
-}
-
-
-
-
-
